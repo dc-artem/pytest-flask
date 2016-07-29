@@ -19,6 +19,26 @@ def test_requests():
     print("RESPONSE:\n", data_json, "\n")
     assert data_json['type'] == 1
 
+
+def test_delete_profile():
+    headers = {
+        'Content-type': 'application/json'
+    }
+
+    data = {
+        "deletion": {
+            "initiator": "current333@example.com",
+            "reason": "It's my desire"
+        }
+    }
+
+    url = "http://personal-data-service.dev/customers/current333@example.com"
+    r = requests.delete(url, data=json.dumps(data), headers=headers)
+    print("\nSTATUS:", r.status_code)
+    data_json = json.loads(r.text)
+    print("RESPONSE:\n", data_json, "\n")
+    assert data_json['type'] == 1
+
 def test_email_info():
 
     headers = {
