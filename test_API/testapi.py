@@ -14,16 +14,16 @@ class TestPersonalData:
         'Content-type': 'application/json'
     }
 
-    baseUrl = 'http://personal-data-service.dev/'
-
     # name = data['name']
+    baseUrlCustomers = data['urls']["baseUrlCustomers"]
+    baseUrl = data['urls']["baseUrl"]
 
 
     def test_request_information_about_system(self):
         pass
 
     def test_insert_or_update_personal_data(self):
-        response = requests.put(TestPersonalData.baseUrl + 'customers/current@example.com',
+        response = requests.put(TestPersonalData.baseUrlCustomers + 'current@example.com',
                                 data=json.dumps(TestPersonalData.data['addNewUser']), headers=TestPersonalData.headers)
         data_json = json.loads(response.text)
 
@@ -31,14 +31,14 @@ class TestPersonalData:
         assert response.status_code == 200
 
     def test_add_and_delete_profile(self):
-        response = requests.put(TestPersonalData.baseUrl + 'customers/current@example.com',
+        response = requests.put(TestPersonalData.baseUrlCustomers + 'current@example.com',
                                 data=json.dumps(TestPersonalData.data['userForDel']), headers=TestPersonalData.headers)
         data_json = json.loads(response.text)
 
         assert data_json['type'] == 1
         assert response.status_code == 200
 
-        respD = requests.delete(TestPersonalData.baseUrl + 'customers/testadduser11@example.com',
+        respD = requests.delete(TestPersonalData.baseUrlCustomers + 'testadduser11@example.com',
                                 data=json.dumps(TestPersonalData.data['forDelete']), headers=TestPersonalData.headers)
 
         data_json = json.loads(respD.text)
@@ -46,13 +46,13 @@ class TestPersonalData:
         assert respD.status_code == 200
 
     def test_getting_information_by_email(self):
-        response = requests.get(TestPersonalData.baseUrl + 'customers/new11@example.com')
+        response = requests.get(TestPersonalData.baseUrlCustomers + 'new11@example.com')
         data_json = json.loads(response.text)
         assert data_json['type'] == 1
         assert response.status_code == 200
 
     def test_getting_statistics_on_personal_data(self):
-        response = requests.get("http://personal-data-service.dev/stats")
+        response = requests.get(TestPersonalData.baseUrl +"stats")
         data_json = json.loads(response.text)
         assert data_json['type'] == 1
         assert response.status_code == 200
