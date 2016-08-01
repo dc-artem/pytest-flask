@@ -16,9 +16,7 @@ class TestPersonalData:
 
     baseUrl = 'http://personal-data-service.dev/'
 
-
-    #name = data['name']
-
+    # name = data['name']
 
 
     def test_request_information_about_system(self):
@@ -27,48 +25,34 @@ class TestPersonalData:
     def test_insert_or_update_personal_data(self):
         response = requests.put(TestPersonalData.baseUrl + 'customers/current@example.com',
                                 data=json.dumps(TestPersonalData.data['addNewUser']), headers=TestPersonalData.headers)
-        print("RESP:", response, "\n")
-        json1 = json.loads(response.text)
-        print("JSON:\n", json1)
+        data_json = json.loads(response.text)
 
+        assert data_json['type'] == 1
+        assert response.status_code == 200
 
     def test_add_and_delete_profile(self):
         response = requests.put(TestPersonalData.baseUrl + 'customers/current@example.com',
                                 data=json.dumps(TestPersonalData.data['userForDel']), headers=TestPersonalData.headers)
-        print(TestPersonalData.baseUrl + 'customers/testadduser2@example.com')
+        data_json = json.loads(response.text)
 
-        print("RESP:", response, "\n")
-        json1 = json.loads(response.text)
-        print("JSON:\n", json1)
-
-
-        # data1 = {
-        #     "deletion": {
-        #         "initiator": "testadduser1@example.com",
-        #         "reason": "It's my desire"
-        #     }
-        # }
-        r = requests.delete(TestPersonalData.baseUrl + 'customers/testadduser11@example.com',
-                            data=json.dumps(TestPersonalData.data['forDelete']), headers=TestPersonalData.headers)
-        print(r)
-        print("\nSTATUS:", r.status_code)
-        data_json = json.loads(r.text)
-        print("RESPONSE:\n", data_json, "\n")
         assert data_json['type'] == 1
+        assert response.status_code == 200
+
+        respD = requests.delete(TestPersonalData.baseUrl + 'customers/testadduser11@example.com',
+                                data=json.dumps(TestPersonalData.data['forDelete']), headers=TestPersonalData.headers)
+
+        data_json = json.loads(respD.text)
+        assert data_json['type'] == 1
+        assert respD.status_code == 200
 
     def test_getting_information_by_email(self):
-        url = "http://personal-data-service.dev/customers/new11@example.com"
-
-        r2 = requests.get(url)
-        print("\nSTATUS:", r2.status_code)
-        data_json = json.loads(r2.text)
-        print("RESPONSE:\n", data_json, "\n")
+        response = requests.get(TestPersonalData.baseUrl + 'customers/new11@example.com')
+        data_json = json.loads(response.text)
         assert data_json['type'] == 1
-
+        assert response.status_code == 200
 
     def test_getting_statistics_on_personal_data(self):
-        r = requests.get("http://personal-data-service.dev/stats")
-        print("\nSTATUS:", r.status_code)
-        data_json = json.loads(r.text)
-        print("RESPONSE:\n", data_json, "\n")
+        response = requests.get("http://personal-data-service.dev/stats")
+        data_json = json.loads(response.text)
         assert data_json['type'] == 1
+        assert response.status_code == 200
