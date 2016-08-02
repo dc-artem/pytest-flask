@@ -15,8 +15,6 @@ class TestPersonalData:
     headers = {
         'Content-type': 'application/json'
     }
-
-    # name = data['name']
     baseUrlCustomers = data['urls']["baseUrlCustomers"]
     baseUrl = data['urls']["baseUrl"]
     emailjson = data['addNewUser']['customerInfo']['email']
@@ -33,14 +31,14 @@ class TestPersonalData:
 
 
 
-    def test_insert_or_update_personal_data1(self):
-        data = json.dumps(TestPersonalData.data['addNewUser'])
-        data = data + str(TestPersonalData.emailjson)
-        print(data, )
+    def test_insert_personal_data(self):
+        addUserData = TestPersonalData.data['addNewUser']
+        addUserData['customerInfo']['email'] = TestPersonalData.email
+        data = json.dumps(addUserData)
+        print(data)
 
-        print("emailjson:", TestPersonalData.emailjson)
         response = requests.put(TestPersonalData.baseUrlCustomers + TestPersonalData.email,
-                                data=json.dumps(TestPersonalData.data['addNewUser']),
+                                data=json.dumps(data),
                                 headers=TestPersonalData.headers)
         print(response)
         data_json = json.loads(response.text)
