@@ -2,9 +2,11 @@ import requests
 import json
 import pytest
 import os.path
-
+from test_API.mail_random_generator import generate_random_email
 
 class TestPersonalData:
+
+    email = generate_random_email(7)
     config = "adduser.json"
     config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), config)
     # with open('adduser.json', 'r', encoding='utf-8') as fh:
@@ -17,12 +19,36 @@ class TestPersonalData:
     # name = data['name']
     baseUrlCustomers = data['urls']["baseUrlCustomers"]
     baseUrl = data['urls']["baseUrl"]
+    emailjson = data['addNewUser']['customerInfo']['email']
+    print("\nemailjson:", emailjson)
+    emailjson = {'email': email}
+    print("\nemailjson:", emailjson)
+    print(email)
 
 
-    def test_request_information_about_system(self):
+
+    def request_information_about_system(self):
         pass
 
-    def test_insert_or_update_personal_data(self):
+
+
+
+    def test_insert_or_update_personal_data1(self):
+        data = json.dumps(TestPersonalData.data['addNewUser'])
+        data = data + str(TestPersonalData.emailjson)
+        print(data, )
+
+        print("emailjson:", TestPersonalData.emailjson)
+        response = requests.put(TestPersonalData.baseUrlCustomers + TestPersonalData.email,
+                                data=json.dumps(TestPersonalData.data['addNewUser']),
+                                headers=TestPersonalData.headers)
+        print(response)
+        data_json = json.loads(response.text)
+
+        assert data_json['type'] == 1
+        assert response.status_code == 200
+
+    def insert_or_update_personal_data(self):
         response = requests.put(TestPersonalData.baseUrlCustomers + 'current@example.com',
                                 data=json.dumps(TestPersonalData.data['addNewUser']), headers=TestPersonalData.headers)
         data_json = json.loads(response.text)
@@ -30,7 +56,7 @@ class TestPersonalData:
         assert data_json['type'] == 1
         assert response.status_code == 200
 
-    def test_add_and_delete_profile(self):
+    def add_and_delete_profile(self):
         response = requests.put(TestPersonalData.baseUrlCustomers + 'current@example.com',
                                 data=json.dumps(TestPersonalData.data['userForDel']), headers=TestPersonalData.headers)
         data_json = json.loads(response.text)
@@ -45,13 +71,13 @@ class TestPersonalData:
         assert data_json['type'] == 1
         assert respD.status_code == 200
 
-    def test_getting_information_by_email(self):
+    def getting_information_by_email(self):
         response = requests.get(TestPersonalData.baseUrlCustomers + 'new11@example.com')
         data_json = json.loads(response.text)
         assert data_json['type'] == 1
         assert response.status_code == 200
 
-    def test_getting_statistics_on_personal_data(self):
+    def getting_statistics_on_personal_data(self):
         response = requests.get(TestPersonalData.baseUrl +"stats")
         data_json = json.loads(response.text)
         assert data_json['type'] == 1

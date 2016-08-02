@@ -1,0 +1,76 @@
+{
+  "urls":{
+    "baseUrl": "http://personal-data-service.dev/",
+    "baseUrlCustomers": "http://personal-data-service.dev/customers/"
+  },
+  "forDelete": {
+    "deletion": {
+      "initiator": "testadduser11@example.com",
+      "reason": "It's my desire"
+    }
+  },
+  "addNewUser": {
+    "customerInfo": {
+      "email": "current@example.com",
+      "firstName": "Olaf",
+      "lastName": "Henderson",
+      "gender": "m",
+      "birthDate": "1990-12-12",
+      "mobilePhoneCountryCode": "+49",
+      "mobilePhoneNumber": "123-44-66"
+    },
+    "customerAddress": {
+      "cityId": 123,
+      "areaId": 321,
+      "addressLine1": "Арбат",
+      "addressLine2": "Арбатская",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressLine5": "",
+      "addressOther": "",
+      "room": "1",
+      "flatNumber": "12",
+      "structure": "1F",
+      "building": "B",
+      "intercom": "111",
+      "entrance": "222",
+      "floor": "10",
+      "district": "Northern",
+      "postcode": "111222",
+      "latitude": "22.265033",
+      "longitude": "114.153"
+    }
+  },
+  "userForDel": {
+    "customerInfo": {
+      "email": "current@example.com",
+      "firstName": "Olaf1",
+      "lastName": "Henderson1",
+      "gender": "m",
+      "birthDate": "1990-12-12",
+      "mobilePhoneCountryCode": "+49",
+      "mobilePhoneNumber": "926-123-44-66"
+    },
+    "customerAddress": {
+      "cityId": 123,
+      "areaId": 321,
+      "addressLine1": "Арбат",
+      "addressLine2": "Арбатская",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressLine5": "",
+      "addressOther": "",
+      "room": "1",
+      "flatNumber": "12",
+      "structure": "1F",
+      "building": "B",
+      "intercom": "111",
+      "entrance": "222",
+      "floor": "10",
+      "district": "Northern",
+      "postcode": "111222",
+      "latitude": "22.265033",
+      "longitude": "114.153"
+    }
+  }
+}
