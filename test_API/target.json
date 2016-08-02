@@ -1,5 +1,5 @@
 {
-  "urls":{
+  "urls": {
     "baseUrl": "http://personal-data-service.dev/",
     "baseUrlCustomers": "http://personal-data-service.dev/customers/"
   },
@@ -7,6 +7,38 @@
     "deletion": {
       "initiator": "testadduser11@example.com",
       "reason": "It's my desire"
+    }
+  },
+    "addUser": {
+    "customerInfo": {
+      "email": "current@example.com",
+      "firstName": "Olaf",
+      "lastName": "Henderson",
+      "gender": "m",
+      "birthDate": "1990-12-12",
+      "mobilePhoneCountryCode": "+49",
+      "mobilePhoneNumber": "123-44-66"
+    },
+    "customerAddress": {
+      "cityId": 123,
+      "areaId": 321,
+      "addressLine1": "Арбат",
+      "addressLine2": "Арбатская",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressLine5": "",
+      "addressOther": "",
+      "room": "1",
+      "flatNumber": "12",
+      "structure": "1F",
+      "building": "B",
+      "intercom": "111",
+      "entrance": "222",
+      "floor": "10",
+      "district": "Northern",
+      "postcode": "111222",
+      "latitude": "22.265033",
+      "longitude": "114.153"
     }
   },
   "addNewUser": {
@@ -39,6 +71,38 @@
       "postcode": "111222",
       "latitude": "22.265033",
       "longitude": "114.153"
+    }
+  },
+  "editPersonalDate": {
+    "customerInfo": {
+      "email": "current@example.com",
+      "firstName": "TestFirstName",
+      "lastName": "TEstLastName",
+      "gender": "f",
+      "birthDate": "1980-10-10",
+      "mobilePhoneCountryCode": "+7",
+      "mobilePhoneNumber": "12333"
+    },
+    "customerAddress": {
+      "cityId": 123,
+      "areaId": 321,
+      "addressLine1": "Марксиская",
+      "addressLine2": "Таганская",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressLine5": "",
+      "addressOther": "",
+      "room": "5",
+      "flatNumber": "66",
+      "structure": "14",
+      "building": "C",
+      "intercom": "444",
+      "entrance": "111",
+      "floor": "1",
+      "district": "Арбат",
+      "postcode": "141121",
+      "latitude": "55.763252",
+      "longitude": "37.621766"
     }
   },
   "userForDel": {
