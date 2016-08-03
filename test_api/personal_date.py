@@ -1,13 +1,13 @@
 import requests
 import json
 import os.path
-from test_API.mail_random_generator import generate_random_email
+from test_api.mail_random_generator import generate_random_email
 
 
 class TestPersonalData:
 
     email = generate_random_email(7)
-    emailfordeluser = generate_random_email(7)
+    emailForDelUser = generate_random_email(7)
 
     config = "target.json"
     config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), config)
@@ -65,10 +65,10 @@ class TestPersonalData:
         """
 
         addUserData = TestPersonalData.data['userForDel']
-        addUserData['customerInfo']['email'] = TestPersonalData.emailfordeluser
+        addUserData['customerInfo']['email'] = TestPersonalData.emailForDelUser
         data = json.dumps(addUserData)
 
-        response = requests.put(TestPersonalData.baseUrlCustomers + TestPersonalData.emailfordeluser,
+        response = requests.put(TestPersonalData.baseUrlCustomers + TestPersonalData.emailForDelUser,
                                 data=json.dumps(data),
                                 headers=TestPersonalData.headers)
         data_json = json.loads(response.text)
@@ -80,10 +80,10 @@ class TestPersonalData:
         Удаление пользователя с уникальным емейлом
         """
         delUserData = TestPersonalData.data['forDelete']
-        delUserData['deletion']['initiator'] = TestPersonalData.emailfordeluser
+        delUserData['deletion']['initiator'] = TestPersonalData.emailForDelUser
         datadel = json.dumps(delUserData)
 
-        respD = requests.delete(TestPersonalData.baseUrlCustomers + TestPersonalData.emailfordeluser,
+        respD = requests.delete(TestPersonalData.baseUrlCustomers + TestPersonalData.emailForDelUser,
                                 data=datadel, headers=TestPersonalData.headers)
 
         data_json = json.loads(respD.text)
