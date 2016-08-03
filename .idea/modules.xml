@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pytest_flask.iml" filepath="$PROJECT_DIR$/.idea/pytest_flask.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/working-with-python/.idea/working-with-python.iml" filepath="$USER_HOME$/Documents/working-with-python/.idea/working-with-python.iml" />
     </modules>
   </component>
 </project>
